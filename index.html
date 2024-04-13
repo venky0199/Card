@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Video</title>
+    <style>
+        /* CSS to make the video cover the entire screen */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        #video-background {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* CSS for content */
+        #content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1; /* Ensure the content is above the video */
+            color: white; /* Set text color to white */
+            font-style:italic;
+            font-size: 70px;
+            font-weight: bolder;
+            margin-top: 0;
+            animation: jump 2s infinite alternate; /* Add jump animation */
+        }
+
+        /* Custom keyframes for jumping effect */
+        @keyframes jump {
+            from { transform: translate(-50%, -50%) translateY(0); }
+            to { transform: translate(-50%, -50%) translateY(-20px); }
+        }
+
+        /* CSS for animating text */
+        .animated-text {
+            display: none;
+            animation: appear 1s forwards;
+        }
+
+        /* Custom keyframes for each letter */
+        @keyframes appear {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Video container to control position and size -->
+    <div id="video-container">
+        <!-- Video element for the background video -->
+        <video autoplay muted loop id="video-background">
+            <source src="Animation.mp4" type="video/mp4">
+            <!-- Add other video formats here for cross-browser compatibility -->
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <!-- Content on top of the video -->
+    <div id="content">
+        <!-- Your content goes here -->
+        <span class="animated-text">H</span>
+        <span class="animated-text">a</span>
+        <span class="animated-text">p</span>
+        <span class="animated-text">p</span>
+        <span class="animated-text">y</span>
+        <br><br> <!-- Add a line break -->
+        <!-- Add animated text for "Birthday" -->
+        <span class="animated-text">B</span>
+        <span class="animated-text">i</span>
+        <span class="animated-text">r</span>
+        <span class="animated-text">t</span>
+        <span class="animated-text">h</span>
+        <span class="animated-text">d</span>
+        <span class="animated-text">a</span>
+        <span class="animated-text">y</span>
+        <br><br> <!-- Add a line break -->
+        <!-- Add animated text for "Birthday" -->
+        <span class="animated-text">S</span>
+        <span class="animated-text">o</span>
+        <span class="animated-text">w</span>
+        <span class="animated-text">m</span>
+        <span class="animated-text">y</span>
+        <span class="animated-text">a</span>
+    </div>
+
+    <script>
+        // JavaScript to animate text after 2-second intervals
+        document.addEventListener("DOMContentLoaded", function() {
+            var animatedText = document.querySelectorAll(".animated-text");
+
+            function animateText(index) {
+                if (index < animatedText.length) {
+                    setTimeout(function() {
+                        animatedText[index].style.display = "inline";
+                        animateText(index + 1);
+                    }, 2000);
+                }
+            }
+
+            animateText(0);
+        });
+    </script>
+</body>
+</html>
